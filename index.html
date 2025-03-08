@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>André Coronel | Backend Knight</title>
+    <meta name="description" content="Vigilante de dados e arquiteto de sistemas complexos">
+    <style>
+        :root {
+            --gotham: #0a0a0a;
+            --bat-signal: #9acaf7;
+            --batman-font: 'BatmanForever', sans-serif;
+        }
+
+        /* Reset CSS e Base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: url('images/gotham-night.jpg') center/cover no-repeat fixed;
+            color: #fff;
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        /* Fundo com imagem */
+        .gotham-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.6)), url('images/gotham-dark.jpg') center/cover;
+            z-index: -1;
+        }
+
+
+        /* Cabeçalho Cinemático */
+        .hero-section {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bat-logo {
+            width: 150px;
+            filter: drop-shadow(0 0 15px var(--bat-signal));
+            animation: batSignalPulse 3s infinite;
+        }
+        /* Bat-Sinal Animado */
+        .bat-signal {
+            position: absolute;
+            top: 10%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
+            height: 200px;
+            background: url('images/bat-symbol.png') no-repeat center center;
+            background-size: contain;
+            opacity: 0;
+            animation: batSignalAnimation 4s ease-in-out infinite;
+        }
+
+        @keyframes batSignalPulse {
+            0%, 100% { opacity: 0.8; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.1); }
+        }
+
+        /* Projetos como "Arquivos Confidenciais" */
+        .case-file {
+            background: rgba(18, 18, 18, 0.95);
+            border-left: 5px solid var(--bat-signal);
+            margin: 4rem auto;
+            padding: 3rem;
+            max-width: 900px;
+            position: relative;
+            backdrop-filter: blur(10px);
+            transform: perspective(1000px) rotateY(-5deg);
+            transition: transform 0.3s;
+        }
+
+        .case-file:hover {
+            transform: perspective(1000px) rotateY(0deg);
+        }
+
+        .case-number {
+            font-family: var(--batman-font);
+            color: var(--bat-signal);
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .tech-card {
+            background: #1a1a1a;
+            padding: 1rem;
+            text-align: center;
+            border: 1px solid #333;
+            transition: all 0.3s;
+        }
+
+        .tech-card:hover {
+            border-color: var(--bat-signal);
+            transform: translateY(-5px);
+        }
+
+        /* Contato - Interface da Batcaverna */
+        .bat-terminal {
+            background: #000;
+            border: 2px solid var(--bat-signal);
+            padding: 2rem;
+            margin: 4rem auto;
+            max-width: 600px;
+            font-family: 'Space Mono', monospace;
+            position: relative;
+        }
+
+        .terminal-prompt::before {
+            content: "> ";
+            color: var(--bat-signal);
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Space+Mono&display=swap" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/batman-forever" rel="stylesheet">
+</head>
+
+<!-- Adicione isto antes do </body> -->
+<div id="bat-swarm"></div>
+
+<script>
+// Configurações personalizáveis
+const batConfig = {
+    count: 8,            // Número de morcegos
+    speed: 2,            // Velocidade base (1-5)
+    opacity: 0.30,       // Transparência (0-1)
+    color: '#FFD700',    // Cor dos morcegos
+    size: 24,            // Tamanho em pixels
+    flapSpeed: 500       // Velocidade do bater de asas (ms)
+};
+
+class Bat {
+    constructor() {
+        this.element = document.createElement('div');
+        this.element.innerHTML = '🦇';
+        this.element.style.cssText = `
+            position: fixed;
+            font-size: ${batConfig.size}px;
+            color: ${batConfig.color};
+            opacity: ${batConfig.opacity};
+            pointer-events: none;
+            user-select: none;
+            transition: transform 0.5s linear;
+        `;
+        document.getElementById('bat-swarm').appendChild(this.element);
+        this.reset();
+    }
+
+    reset() {
+        this.x = Math.random() * window.innerWidth;
+        this.y = Math.random() * window.innerHeight;
+        this.angle = Math.random() * 360;
+        this.speed = (Math.random() * batConfig.speed) + batConfig.speed;
+        this.flapDirection = 1;
+        
+        // Animação de bater asas
+        this.flapInterval = setInterval(() => {
+            this.element.style.transform = `rotate(${this.flapDirection * 30}deg)`;
+            this.flapDirection *= -1;
+        }, batConfig.flapSpeed);
+    }
+
+    update() {
+        this.x += Math.cos(this.angle * Math.PI/180) * this.speed;
+        this.y += Math.sin(this.angle * Math.PI/180) * this.speed;
+        
+        // Atualizar posição
+        this.element.style.left = `${this.x}px`;
+        this.element.style.top = `${this.y}px`;
+        
+        // Resetar se sair da tela
+        if (this.x < -100 || this.x > window.innerWidth + 100 ||
+            this.y < -100 || this.y > window.innerHeight + 100) {
+            this.reset();
+        }
+    }
+}
+
+// Sistema de enxame
+const swarm = [];
+function initBatSwarm() {
+    for (let i = 0; i < batConfig.count; i++) {
+        swarm.push(new Bat());
+    }
+    
+    function animate() {
+        swarm.forEach(bat => bat.update());
+        requestAnimationFrame(animate);
+    }
+    animate();
+}
+
+// Iniciar quando a página carregar
+window.addEventListener('load', initBatSwarm);
+
+// Redimensionamento responsivo
+window.addEventListener('resize', () => {
+    swarm.forEach(bat => bat.reset());
+});
+
+// Efeito de interação (opcional)
+document.addEventListener('mousemove', (e) => {
+    swarm.forEach(bat => {
+        const dx = e.clientX - bat.x;
+        const dy = e.clientY - bat.y;
+        const distance = Math.sqrt(dx*dx + dy*dy);
+        
+        if (distance < 200) { // Raio de influência do mouse
+            bat.angle = Math.atan2(dy, dx) * 180/Math.PI;
+            bat.speed = batConfig.speed * 2;
+        }
+    });
+});
+</script>
+
+
+
+<body>
+    <div class="background-wrapper">
+        <div class="gotham-image"></div>
+        <div class="dark-overlay"></div>
+    </div>
+
+    <!-- Seção Hero -->
+    <section class="hero-section">
+        <img src="images/bat-symbol.png" alt="Batman" class="bat-logo">
+        <h1 style="margin-top: 2rem; font-family: var(--batman-font);">ANDRÉ CORONEL</h1>
+        <p style="letter-spacing: 3px; margin-top: 1rem;">BACKEND SYSTEMS | PYTHON ARCHITECT</p>
+    </section>
+
+<!-- Caso 1: Sistema Financeiro -->
+<article class="case-file">
+    <div class="case-number">BatBot</div>
+    <h2>Operação Cifrão Global: Desvendando o Coringa Monetário</h2>
+    <div class="tech-grid">
+        <div class="tech-card">
+            <img src="images/python-dark.png" alt="Python" style="width: 50px;">
+            <p>Python</p>
+        </div>
+    </div>
+    <ul style="list-style: none;">
+        <li>✓ Monitoramento de moedas internacionais</li>
+        <li>✓ Integração direta com API do Banco Central</li>
+    </ul>
+    <div class="bat-links">
+        <a href="https://github.com/aclfilho/RPA" 
+           class="bat-button"
+           target="_blank"
+           rel="noopener noreferrer"
+           aria-label="Ver repositório no GitHub">
+           <span class="bat-icon">🦇</span> Código-Fonte
+        </a>
+        <a href="https://github.com/aclfilho/RPA" 
+           class="bat-button bat-button-secondary"
+           onclick="return confirm('Acessar demo requer nível de segurança 9. Confirmar?')">
+           <span class="bat-icon">🔍</span> Demo Ao Vivo
+        </a>
+    </div>
+</article>
+
+<!-- Caso 2: Modelo de Machine Learning -->
+<article class="case-file">
+    <div class="case-number">Gotham Analytics</div>
+    <h2>Algoritmo do Oráculo: Previsão de preços de imóveis</h2>
+    <div class="tech-grid">
+        <div class="tech-card">
+            <img src="images/python-dark.png" alt="Python" style="width: 50px;">
+            <p>Python</p>
+        </div>
+
+    </div> <!-- Fechamento correto do tech-grid -->
+    <ul style="list-style: none;">
+        <li>✓ Acurácia de 89.7%</li>
+        <li>✓ Treinado com datapoints</li>
+    </ul>
+    <div class="bat-links">
+        <a href="https://github.com/aclfilho/Projeto-LH-CD/blob/main/Relatorio.pdf" 
+           class="bat-button"
+           download="Relatorio_Oraculo.pdf">
+           <span class="bat-icon">📁</span> Acessar Relatório
+        </a>
+        <a href="https://github.com/aclfilho/Projeto-LH-CD/tree/main" 
+           class="bat-button bat-button-secondary"
+           target="_blank">
+           <span class="bat-icon">📰</span> Case Study
+        </a>
+    </div>
+</article> <!-- Fechamento correto do article -->
+
+<!-- No Caso 3: Vigilância Aérea (corrigindo a estrutura) -->
+<article class="case-file">
+    <div class="case-number">Sistema de Vigilância de Gotham</div>
+    <h2>Bat-Sonar Skywatch</h2>
+    <div class="tech-grid">
+        <div class="tech-card">
+            <img src="images/python-dark.png" alt="Python" style="width: 50px;">
+            <p>Python</p>
+        </div>
+        <!-- Adicione mais tech-cards se necessário -->
+    </div> <!-- Fechamento correto da div tech-grid -->
+    <ul style="list-style: none;">
+        <li>✓ Dados em tempo real de aeronaves</li>
+        <li>✓ Mapeamento nacional</li>
+    </ul>
+    <div class="bat-links">
+        <a href="https://github.com/aclfilho/Radar-Aereo" 
+           class="bat-button bat-live-link"
+           target="_blank">
+           <span class="radar-pulse"></span>Acessar Radar
+        </a>
+    </div>
+</article> <!-- Fechamento correto do article -->
+
+<!-- No Caso 4: Analise de treinos de corrida -->
+<article class="case-file">
+    <div class="case-number">Gotham Run Analytics </div>
+    <h2>Sistema de armazenamento de treinos de corrida</h2>
+    <div class="tech-grid">
+        <div class="tech-card">
+            <img src="images/python-dark.png" alt="Python" style="width: 50px;">
+            <p>Python</p>
+        </div>
+        <!-- Adicione mais tech-cards se necessário -->
+    </div> <!-- Fechamento correto da div tech-grid -->
+    <ul style="list-style: none;">
+        <li>✓ Analise de treinos</li>
+        <li>✓ Armazenamento dos dados sem segurança</li>
+    </ul>
+    <div class="bat-links">
+        <a href="https://github.com/aclfilho/First-project" 
+           class="bat-button bat-live-link"
+           target="_blank">
+           <span class="bat-icon">⏱️</span> Projeto Corrida
+        </a>
+    </div>
+</article> <!-- Fechamento correto do article -->
+
+<style>
+/* Atualize o CSS do botão do radar */
+.bat-live-link {
+    padding-left: 40px;
+    position: relative;
+    overflow: hidden;
+}
+
+.radar-pulse {
+    position: absolute;
+    left: 15px;
+    width: 12px;
+    height: 12px;
+    background: #1961fa;
+    border-radius: 50%;
+    animation: pulse 1.5s infinite;
+}
+
+/* Mantenha o hover consistente */
+.bat-live-link:hover {
+    box-shadow: 0 0 15px #1c5ce6;
+    transform: translateY(-2px);
+}
+
+/* Adicione estas regras para alinhamento */
+.bat-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.tech-grid {
+    margin: 20px 0;
+}
+
+/* Correção na animação do pulso */
+@keyframes pulse {
+    0% { 
+        box-shadow: 0 0 0 0 rgba(24, 152, 238, 0.664);
+        transform: scale(1);
+    }
+    100% { 
+        box-shadow: 0 0 0 12px rgba(255,0,0,0);
+        transform: scale(1.2);
+    }
+}
+</style>
+    
+</article>
+
+    <!-- Terminal de Contato -->
+    <section class="bat-terminal">
+            > E-mail: coronel.filho@hotmail.com<br>
+            > Bat-Phone: +55 (79) 99105-5995<br>
+            > Linkedin: www.linkedin.com/in/andrecoronell<br>
+            > Status: Disponível para missões críticas
+        </div>
+        <div style="margin-top: 2rem;">
+            
+        </div>
+    </section>
+
+    <script>
+        // Sistema de Comandos
+        function revealCode(caseId) {
+            const codes = {
+                cifrao: `def main():\n    print("Acessando sistemas do Banco Central...")\n    # [Código confidencial - Nível de segurança 9]`
+            };
+            alert(`🚨 Acesso Autorizado 🚨\n\n${codes[caseId]}`);
+        }
+
+        // Easter Egg: Bat-Sinal Secreto
+        document.addEventListener('keydown', (e) => {
+            if (e.code === 'KeyB' && e.altKey) {
+                document.body.style.background = "radial-gradient(circle, var(--bat-signal) 10%, transparent 20%)";
+                setTimeout(() => {
+                    document.body.style.background = "";
+                }, 1000);
+            }
+        });
+
+        // Efeito de Digitação
+        const contactOutput = document.getElementById('contact-output');
+        const contactText = contactOutput.innerHTML.split('<br>');
+        contactOutput.innerHTML = '';
+        
+        contactText.forEach((line, index) => {
+            setTimeout(() => {
+                contactOutput.innerHTML += line + '<br>';
+            }, 100 * index);
+        });
+    </script>
+    <canvas id="bat-signal"></canvas>
+<script>
+const canvas = document.getElementById('bat-signal');
+const ctx = canvas.getContext('2d');
+
+canvas.width = window.innerWidth;
+canvas.height = 200;
+
+function drawBatSignal() {
+    ctx.fillStyle = 'rgba(0,0,0,0.1)';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    
+    // Criar gradiente para o Bat-Sinal
+    const gradient = ctx.createRadialGradient(
+        canvas.width/2, 50, 10,
+        canvas.width/2, 50, 100
+    );
+    gradient.addColorStop(0, '#FFD700');
+    gradient.addColorStop(1, 'transparent');
+    
+    ctx.fillStyle = gradient;
+    ctx.beginPath();
+    ctx.arc(canvas.width/2, 50, 100, 0, Math.PI * 2);
+    ctx.fill();
+    
+    requestAnimationFrame(drawBatSignal);
+}
+
+window.addEventListener('scroll', () => {
+    canvas.style.transform = `translateY(${window.scrollY * 0.5}px)`;
+});
+
+drawBatSignal();
+</script>
+<div class="hologram-terminal">
+    <div class="hologram-content">
+        > Iniciando sistemas de vigilância...
+    </div>
+</div>
+
+<style>
+.hologram-terminal {
+    perspective: 1000px;
+    transform-style: preserve-3d;
+}
+
+.hologram-content {
+    background: rgba(0, 255, 255, 0.05);
+    border: 1px solid rgba(0, 255, 255, 0.2);
+    padding: 2rem;
+    transform: 
+        rotateX(45deg) 
+        translateZ(50px);
+    animation: hologram 2s infinite;
+}
+
+@keyframes hologram {
+    0%, 100% { opacity: 0.8; }
+    50% { opacity: 1; text-shadow: 0 0 10px cyan; }
+}
+</style>
+
+</body>
+</html>

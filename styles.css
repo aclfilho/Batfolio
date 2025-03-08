@@ -1,0 +1,121 @@
+/* Estilos gerais */
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    font-family: Arial, sans-serif;
+}
+
+/* Estilo do fundo com Gotham City */
+.gotham-bg {
+    position: fixed; /* Fixa o fundo na tela */
+    top: 0;
+    left: 0;
+    width: 100vw; /* Preenche toda a largura da tela */
+    height: 100vh; /* Preenche toda a altura da tela */
+    background: 
+        url('images/gotham-city.png') center/cover no-repeat; /* Define a imagem de fundo */
+    background-size: cover; /* Faz com que a imagem cubra toda a tela */
+    z-index: -1; /* Coloca o fundo atrás de outros elementos */
+    opacity: 0.8; /* Caso queira um efeito de opacidade */
+}
+
+/* Outros estilos da página */
+.container {
+    position: relative;
+    z-index: 1; /* Garante que o conteúdo fique sobre o fundo */
+    padding: 20px;
+    color: white;
+}
+
+h1 {
+    font-size: 3rem;
+    text-align: center;
+    color: #fff;
+}
+
+/* Adicionando efeitos para o conteúdo */
+h2 {
+    font-size: 2rem;
+    color: #fff;
+}
+/* Estilo base dos botões */
+.bat-button {
+    display: inline-block;
+    background-color: #00249b; /* Amarelo Dourado */
+    color: #000;
+    padding: 10px 20px;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: 0.3s;
+    border: 2px solid #00249b;
+}
+
+/* Efeito ao passar o mouse */
+.bat-button:hover {
+    background-color: #00249b; /* Amarelo mais claro */
+    color: #111;
+    box-shadow: 0 0 15px #00249b;
+    transform: translateY(-3px);
+}
+
+/* Botão Secundário */
+.bat-button-secondary {
+    background-color: transparent;
+    color: #00249b;
+    border: 2px solid #00249b;
+}
+
+.bat-button-secondary:hover {
+    background-color: #00249b;
+    color: #000;
+}
+
+/* Botão de Acesso ao Radar */
+.bat-live-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: #00249b;
+    color: #000;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: bold;
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+.bat-live-link:hover {
+    background: #00249b;
+    color: #111;
+    box-shadow: 0 0 15px #00249b;
+}
+
+/* Animação do Radar */
+.radar-pulse {
+    position: absolute;
+    left: 15px;
+    width: 12px;
+    height: 12px;
+    background: #00249b;
+    border-radius: 50%;
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(0, 26, 255, 0.692); transform: scale(1); }
+    100% { box-shadow: 0 0 0 12px rgba(255,0,0,0); transform: scale(1.2); }
+}
+
+
+.bat-button {
+    color: #00249b; /* Amarelo do Bat-Sinal */
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.bat-button:hover {
+    color: #fff; /* Branco ao passar o mouse */
+}
