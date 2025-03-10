@@ -24,7 +24,7 @@ const batConfig = {
     count: 12,
     speed: 3,
     opacity: 0.2,
-    color: '#FF4500', // Laranjeira
+    color: '#0000', // Laranjeira
     size: 32,
     flapSpeed: 300
 };
@@ -32,3 +32,4 @@ window.addEventListener('resize', () => {
     canvas.width = window.innerWidth;
     canvas.height = 200;
 });
+

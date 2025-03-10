@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
     <meta charset="UTF-8">
     <title>André Coronel | Backend Knight</title>
     <meta name="description" content="Vigilante de dados e arquiteto de sistemas complexos">
@@ -250,112 +252,112 @@ document.addEventListener('mousemove', (e) => {
         <p style="letter-spacing: 3px; margin-top: 1rem;">BACKEND SYSTEMS | PYTHON ARCHITECT</p>
     </section>
 
-<!-- Caso 1: Sistema Financeiro -->
-<article class="case-file">
-    <div class="case-number">BatBot</div>
-    <h2>Operação Cifrão Global: Desvendando o Coringa Monetário</h2>
-    <div class="tech-grid">
-        <div class="tech-card">
-            <img src="images/python-dark.png" alt="Python" style="width: 50px;">
-            <p>Python</p>
-        </div>
-    </div>
-    <ul style="list-style: none;">
-        <li>✓ Monitoramento de moedas internacionais</li>
-        <li>✓ Integração direta com API do Banco Central</li>
-    </ul>
-    <div class="bat-links">
-        <a href="https://github.com/aclfilho/RPA" 
-           class="bat-button"
-           target="_blank"
-           rel="noopener noreferrer"
-           aria-label="Ver repositório no GitHub">
-           <span class="bat-icon">🦇</span> Código-Fonte
-        </a>
-        <a href="https://github.com/aclfilho/RPA" 
-           class="bat-button bat-button-secondary"
-           onclick="return confirm('Acessar demo requer nível de segurança 9. Confirmar?')">
-           <span class="bat-icon">🔍</span> Demo Ao Vivo
-        </a>
-    </div>
-</article>
-
-<!-- Caso 2: Modelo de Machine Learning -->
-<article class="case-file">
-    <div class="case-number">Gotham Analytics</div>
-    <h2>Algoritmo do Oráculo: Previsão de preços de imóveis</h2>
-    <div class="tech-grid">
-        <div class="tech-card">
-            <img src="images/python-dark.png" alt="Python" style="width: 50px;">
-            <p>Python</p>
-        </div>
-
-    </div> <!-- Fechamento correto do tech-grid -->
-    <ul style="list-style: none;">
-        <li>✓ Acurácia de 89.7%</li>
-        <li>✓ Treinado com datapoints</li>
-    </ul>
-    <div class="bat-links">
-        <a href="https://github.com/aclfilho/Projeto-LH-CD/blob/main/Relatorio.pdf" 
-           class="bat-button"
-           download="Relatorio_Oraculo.pdf">
-           <span class="bat-icon">📁</span> Acessar Relatório
-        </a>
-        <a href="https://github.com/aclfilho/Projeto-LH-CD/tree/main" 
-           class="bat-button bat-button-secondary"
-           target="_blank">
-           <span class="bat-icon">📰</span> Case Study
-        </a>
-    </div>
-</article> <!-- Fechamento correto do article -->
-
-<!-- No Caso 3: Vigilância Aérea (corrigindo a estrutura) -->
-<article class="case-file">
-    <div class="case-number">Sistema de Vigilância de Gotham</div>
-    <h2>Bat-Sonar Skywatch</h2>
-    <div class="tech-grid">
-        <div class="tech-card">
-            <img src="images/python-dark.png" alt="Python" style="width: 50px;">
-            <p>Python</p>
-        </div>
-        <!-- Adicione mais tech-cards se necessário -->
-    </div> <!-- Fechamento correto da div tech-grid -->
-    <ul style="list-style: none;">
-        <li>✓ Dados em tempo real de aeronaves</li>
-        <li>✓ Mapeamento nacional</li>
-    </ul>
-    <div class="bat-links">
-        <a href="https://github.com/aclfilho/Radar-Aereo" 
-           class="bat-button bat-live-link"
-           target="_blank">
-           <span class="radar-pulse"></span>Acessar Radar
-        </a>
-    </div>
-</article> <!-- Fechamento correto do article -->
-
-<!-- No Caso 4: Analise de treinos de corrida -->
-<article class="case-file">
-    <div class="case-number">Gotham Run Analytics </div>
-    <h2>Sistema de armazenamento de treinos de corrida</h2>
-    <div class="tech-grid">
-        <div class="tech-card">
-            <img src="images/python-dark.png" alt="Python" style="width: 50px;">
-            <p>Python</p>
-        </div>
-        <!-- Adicione mais tech-cards se necessário -->
-    </div> <!-- Fechamento correto da div tech-grid -->
-    <ul style="list-style: none;">
-        <li>✓ Analise de treinos</li>
-        <li>✓ Armazenamento dos dados sem segurança</li>
-    </ul>
-    <div class="bat-links">
-        <a href="https://github.com/aclfilho/First-project" 
-           class="bat-button bat-live-link"
-           target="_blank">
-           <span class="bat-icon">⏱️</span> Projeto Corrida
-        </a>
-    </div>
-</article> <!-- Fechamento correto do article -->
+    <style>
+        .bat-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #1c1c1e;
+            color: #9acaf7;
+            padding: 10px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background 0.3s, transform 0.2s;
+        }
+        
+        .bat-button:hover {
+            background: #273746;
+            transform: translateY(-2px);
+        }
+        
+        .bat-button-secondary {
+            background: #9acaf7;
+            color: #1c1c1e;
+        }
+        
+        .bat-button-secondary:hover {
+            background: #67a1d9;
+        }
+        
+        </style>
+        
+        <article class="case-file">
+            <div class="case-number">BatBot</div>
+            <h2>Desvendando o Coringa Monetário</h2>
+            <ul>
+                <li>Monitoramento de moedas internacionais</li>
+                <li>Integração direta com API do Banco Central</li>
+            </ul>
+            <div class="bat-links">
+                <a href="https://github.com/aclfilho/RPA" class="bat-button" target="_blank">
+                    <img src="images/github-logo.png" alt="GitHub" width="20">
+                    <span class="bat-icon"></span> GitHub
+                </a>
+                <a href="https://github.com/aclfilho/RPA" class="bat-button bat-button-secondary" target="_blank">
+                    <img src="images/rpa-logo.png" alt="RPA" width="20">
+                    <span class="bat-icon"></span> Demo
+                </a>
+            </div>
+        </article>
+        
+        <!-- Caso 2: Machine Learning -->
+        <article class="case-file">
+            <div class="case-number">Gotham Analytics</div>
+            <h2>Algoritmo do Oráculo: Previsão de preços de imóveis</h2>
+            <ul>
+                <li>✓ Acurácia de 89.7%</li>
+                <li>✓ Treinado com 15k+ datapoints</li>
+            </ul>
+            <div class="bat-links">
+                <a href="https://github.com/aclfilho/Projeto-LH-CD/tree/main" class="bat-button" target="_blank">
+                    <img src="images/github-logo.png" alt="GitHub" width="20">
+                    <span class="bat-icon"></span> GitHub
+                </a>
+                <a href="https://github.com/aclfilho/Projeto-LH-CD/blob/main/Relatorio.pdf" class="bat-button bat-button-secondary" target="_blank">
+                    <span class="bat-icon">📄</span> Relatório
+                </a>
+            </div>
+        </article>
+        
+        <!-- Caso 3: Radar Aéreo -->
+        <article class="case-file">
+            <div class="case-number">Bat-Sonar Skywatch</div>
+            <h2>Sistema de Vigilância de Gotham</h2>
+            <ul>
+                <li>✓ Dados em tempo real de aeronaves</li>
+                <li>✓ Mapeamento nacional</li>
+            </ul>
+            <div class="bat-links">
+                <a href="https://github.com/aclfilho/Radar-Aereo" class="bat-button" target="_blank">
+                    <img src="images/github-logo.png" alt="GitHub" width="20">
+                    <span class="bat-icon"></span> GitHub
+                </a>
+                <a href="https://github.com/aclfilho/Radar-Aereo" class="bat-button bat-button-secondary" target="_blank">
+                    <img src="images/radar-logo.png" alt="Radar" width="20">
+                    <span class="bat-icon"></span> Demo
+                </a>
+            </div>
+        </article>
+        
+        <!-- Caso 4: Análise de Treinos -->
+        <article class="case-file">
+            <div class="case-number">Gotham Run Analytics</div>
+            <h2>Sistema de armazenamento de treinos de corrida</h2>
+            <ul>
+                <li>✓ Análise de performance</li>
+                <li>✓ Armazenamento seguro de dados</li>
+            </ul>
+            <div class="bat-links">
+                <a href="https://github.com/aclfilho/First-project" class="bat-button" target="_blank">
+                    <img src="images/github-logo.png" alt="GitHub" width="20">
+                    <span class="bat-icon"></span> GitHub
+                </a>
+                <a href="https://github.com/aclfilho/First-project" class="bat-button bat-button-secondary" target="_blank">
+                    <span class="bat-icon">📈</span> Relatório
+                </a>
+            </div>
+        </article>
+        
 
 <style>
 /* Atualize o CSS do botão do radar */
@@ -406,18 +408,30 @@ document.addEventListener('mousemove', (e) => {
 </style>
     
 </article>
+<section class="bat-terminal">
+    <div class="bat-signal-container">
+        
+    </div>
 
-    <!-- Terminal de Contato -->
-    <section class="bat-terminal">
-            > E-mail: coronel.filho@hotmail.com<br>
-            > Bat-Phone: +55 (79) 99105-5995<br>
-            > Linkedin: www.linkedin.com/in/andrecoronell<br>
-            > Status: Disponível para missões críticas
-        </div>
-        <div style="margin-top: 2rem;">
-            
-        </div>
-    </section>
+    <div class="terminal-text">
+        <h2 class="terminal-title">Conecte-se à Batcaverna</h2>
+        <p class="terminal-subtitle">Sua mensagem, nosso chamado.</p>
+    </div>
+
+    <div class="contact-links">
+        <a href="mailto:coronel.filho@hotmail.com" class="bat-button">
+            <i class="fas fa-envelope"></i> E-mail
+        </a>
+        <a href="https://www.linkedin.com/in/andrecoronell" target="_blank" class="bat-button">
+            <i class="fab fa-linkedin"></i> LinkedIn
+        </a>
+        <a href="https://github.com/aclfilho" target="_blank" class="bat-button">
+            <i class="fab fa-github"></i> GitHub
+        </a>
+    </div>
+</section>
+
+</section>
 
     <script>
         // Sistema de Comandos
@@ -428,15 +442,6 @@ document.addEventListener('mousemove', (e) => {
             alert(`🚨 Acesso Autorizado 🚨\n\n${codes[caseId]}`);
         }
 
-        // Easter Egg: Bat-Sinal Secreto
-        document.addEventListener('keydown', (e) => {
-            if (e.code === 'KeyB' && e.altKey) {
-                document.body.style.background = "radial-gradient(circle, var(--bat-signal) 10%, transparent 20%)";
-                setTimeout(() => {
-                    document.body.style.background = "";
-                }, 1000);
-            }
-        });
 
         // Efeito de Digitação
         const contactOutput = document.getElementById('contact-output');
